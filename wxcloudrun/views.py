@@ -125,4 +125,4 @@ def chat_with_gpt(text):
 def generate_text_response(xml_tree, content):
     # 根据对话结果生成XML格式的回复消息
     pass
-# chenjun
+# chenjun 1
