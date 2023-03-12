@@ -5,11 +5,13 @@ from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 
+"""
 # chenjun
 from flask import Flask, request, make_response
 import hashlib
 import xml.etree.ElementTree as ET
 # chenjun
+"""
 
 @app.route('/')
 def index():
@@ -70,7 +72,7 @@ def get_count():
     counter = Counters.query.filter(Counters.id == 1).first()
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
 
-
+"""
 # chenjun
 app = Flask(__name__)
 
@@ -126,3 +128,4 @@ def generate_text_response(xml_tree, content):
     # 根据对话结果生成XML格式的回复消息
     pass
 # chenjun 1
+"""
