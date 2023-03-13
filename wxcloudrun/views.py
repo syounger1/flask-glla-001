@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template, request
+from flask import render_template
 from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
@@ -48,21 +48,21 @@ def wechat_auth():
             return make_response(response)
 
 def chat_with_gpt(text):
-   prompt = f"User: {text}\nAI:"
-    model_id = 'gpt-3.5-turbo'  # 替换为自己的模型ID
-    api_key = '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'  # 替换为自己的API密钥
-    headers = {'Authorization': f'Bearer {api_key}'}
-    data = {
+   prompt = f'User: {text}\nAI:'
+   model_id = 'gpt-3.5-turbo'  # 替换为自己的模型ID
+   api_key = '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'  # 替换为自己的API密钥
+   headers = {'Authorization': f'Bearer {api_key}'}
+   data = {
         'model': model_id,
         'prompt': prompt,
         'temperature': 0.5,
         'max_tokens': 1024,
         'stop': '\n'
     }
-    response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=data)
-    if response.status_code == 200:
+   response = request.post('https://api.openai.com/v1/completions', headers=headers, json=data)
+   if response.status_code == 200:
         return response.json()['choices'][0]['text'].strip()
-    else:
+   else:
         return '对话出现错误，请稍后再试。'
 
 def generate_text_response(xml_tree, content):
