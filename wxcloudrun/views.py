@@ -15,9 +15,17 @@ import xml.etree.ElementTree as ET
 
 
 # chenjun
+
+@app.route('/')
+def index():
+    """
+    :return: 返回index页面
+    """
+    return render_template('index.html')
+
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/api/com', methods=['GET', 'POST'])
 def wechat_auth():
     if request.method == 'GET':
         token = 'your_token'  # 替换为自己在公众号设置中的Token
